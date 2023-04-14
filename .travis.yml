@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true romanas/docker-react yarn test:coverage  
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-916201252248"
+  bucket_path: "docker-react"
+  on:
+    banch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
